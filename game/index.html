@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Double Take — Spot the Difference</title>
+<link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+<div id="app">
+  <header id="hud">
+    <div class="hud-left">
+      <span id="hud-title">DOUBLE TAKE</span>
+      <span id="hud-scene">Scene 1 / 6 · Sunny Park</span>
+    </div>
+    <div class="hud-mid">
+      <span id="hud-found" class="pill">Found 0 / 7</span>
+      <span id="hud-score" class="pill">Score 0</span>
+      <span id="hud-combo" class="pill combo">Combo ×1</span>
+    </div>
+    <div class="hud-right">
+      <div id="timer-wrap"><div id="timer-bar"></div><span id="hud-time">150s</span></div>
+      <button id="hint-btn" type="button">💡 Hint (3)</button>
+      <button id="mute-btn" type="button" aria-label="Mute">🔊</button>
+    </div>
+  </header>
+
+  <main id="panels">
+    <section class="panel" id="panel-left">
+      <div class="panel-tag">A · ORIGINAL</div>
+      <canvas id="canvas-left" width="560" height="460"></canvas>
+    </section>
+    <section class="panel" id="panel-right">
+      <div class="panel-tag">B · SPOT THE DIFFERENCE</div>
+      <canvas id="canvas-right" width="560" height="460"></canvas>
+    </section>
+  </main>
+
+  <div id="found-strip" aria-label="Differences found so far"></div>
+
+  <footer id="helpbar">
+    <span>Click a difference on either picture · <b>H</b> hint (−50 pts) · <b>R</b> restart level · <b>M</b> mute · <b>Esc</b> menu</span>
+    <span id="hud-best">Best 0</span>
+  </footer>
+
+  <div id="overlay-title" class="overlay">
+    <div class="card">
+      <div class="eyebrow">A SPOT-THE-DIFFERENCE HUNT</div>
+      <h1>DOUBLE TAKE</h1>
+      <p class="tagline">Two pictures. Seven lies. One sharp eye.</p>
+      <p class="counts">6 scenes · 42 differences · hints &amp; time attack</p>
+      <p class="how">Each scene hides <b>7 differences</b> between the two pictures.
+      Click one on either side to mark it on both. Wrong clicks cost 3 seconds
+      and break your combo. Find all 7 before the timer runs out — later scenes
+      hide subtler differences, give you less time and fewer hints.</p>
+      <button id="play-btn" type="button" class="big-btn">▶&nbsp; Play</button>
+      <p class="best-line">Best score: <span id="title-best">0</span></p>
+      <p class="scenes-line">Sunny Park · Cozy Kitchen · Harbour at Dusk · Space Station · Enchanted Forest · Cat Café</p>
+    </div>
+  </div>
+
+  <div id="overlay-level" class="overlay hidden">
+    <div class="card small">
+      <div class="eyebrow">LEVEL COMPLETE</div>
+      <h2 id="level-title">Sunny Park — cleared!</h2>
+      <p class="stat-row"><span>Found</span><b id="level-found">7 / 7</b></p>
+      <p class="stat-row"><span>Time bonus</span><b id="level-time-bonus">+0</b></p>
+      <p class="stat-row"><span>Accuracy</span><b id="level-accuracy">100%</b></p>
+      <p class="stat-row"><span>Score</span><b id="level-score">0</b></p>
+      <button id="next-btn" type="button" class="big-btn">Next level →</button>
+      <button id="replay-btn" type="button" class="ghost-btn">Replay this scene</button>
+    </div>
+  </div>
+
+  <div id="overlay-failed" class="overlay hidden">
+    <div class="card small">
+      <div class="eyebrow">TIME'S UP</div>
+      <h2>So close — the differences win this round</h2>
+      <p class="stat-row"><span>Found</span><b id="failed-found">0 / 7</b></p>
+      <p class="stat-row"><span>Still hiding</span><b id="failed-left">7</b></p>
+      <p class="how">Tip: scan the edges first — small things love the corners.</p>
+      <button id="retry-btn" type="button" class="big-btn">↻&nbsp; Retry level</button>
+      <button id="menu-btn" type="button" class="ghost-btn">Back to menu</button>
+    </div>
+  </div>
+
+  <div id="overlay-win" class="overlay hidden">
+    <div class="card">
+      <div class="eyebrow">ALL 6 SCENES CLEARED</div>
+      <h1>YOU FOUND ALL 42!</h1>
+      <p class="tagline">Eagle eye confirmed. Not a single difference escaped you.</p>
+      <p class="stat-row"><span>Final score</span><b id="win-score">0</b></p>
+      <p class="stat-row"><span>Accuracy</span><b id="win-accuracy">100%</b></p>
+      <p class="stat-row"><span>Best combo</span><b id="win-combo">×0</b></p>
+      <p class="stat-row"><span>Best score</span><b id="win-best">0</b></p>
+      <p id="new-best" class="new-best hidden">★ NEW BEST SCORE ★</p>
+      <button id="again-btn" type="button" class="big-btn">↻&nbsp; Play again</button>
+      <button id="win-menu-btn" type="button" class="ghost-btn">Back to menu</button>
+    </div>
+  </div>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
